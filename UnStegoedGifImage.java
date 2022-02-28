@@ -242,7 +242,7 @@ public class UnStegoedGifImage {
 					lineOfExtractedBinaryMessage = lineOfExtractedBinaryMessage + "1";
 
 				secondBit = unStegoImage[row][col][2] & 2;
-				thirdBit = unStegoImage[row][col][2] & 3;
+				thirdBit = unStegoImage[row][col][2] & 4;
 
 				if (secondBit == 0)
 					lineOfExtractedBinaryMessage = lineOfExtractedBinaryMessage + "0";
@@ -320,8 +320,8 @@ public class UnStegoedGifImage {
 					lineOfExtractedBinaryMessage = lineOfExtractedBinaryMessage + "1";
 
 				secondBit = unStegoImage[row][col][2] & 2;
-				thirdBit = unStegoImage[row][col][2] & 3;
-				fourthBit = unStegoImage[row][col][2] & 4;
+				thirdBit = unStegoImage[row][col][2] & 4;
+				fourthBit = unStegoImage[row][col][2] & 8;
 
 				if (secondBit == 0)
 					lineOfExtractedBinaryMessage = lineOfExtractedBinaryMessage + "0";

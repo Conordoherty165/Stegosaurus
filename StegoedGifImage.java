@@ -322,11 +322,11 @@ public class StegoedGifImage {
 
 				binaryValue = binaryString[i].charAt(0);  //Message Bit
 				if(binaryValue=='1'){
-					if(imagePixels[row][col][2]%2==0)
+					if((imagePixels[row][col][2]&1)==0)
 						imagePixels[row][col][2]=imagePixels[row][col][2]+1;
 				}
 				else{
-					if(imagePixels[row][col][2]%2==1)
+					if((imagePixels[row][col][2]&1)==1)
 						imagePixels[row][col][2]=imagePixels[row][col][2]-1;
 				} 
 				i++;
@@ -335,6 +335,7 @@ public class StegoedGifImage {
 					return imagePixels;
 
 				binaryValue = binaryString[i].charAt(0);
+
 				secondBit = imagePixels[row][col][2]&2;
 				if(binaryValue=='1') {
 					if(secondBit==0) {
@@ -346,15 +347,20 @@ public class StegoedGifImage {
 						imagePixels[row][col][2]=imagePixels[row][col][2]-2;
 					}
 				}
+				i++;
+
+				if(binaryString[i]==null)
+					return imagePixels;
+
 				binaryValue = binaryString[i].charAt(0);
-				thirdBit = imagePixels[row][col][2]&3;
+				thirdBit = imagePixels[row][col][2]&4;
 				if(binaryValue=='1') {
 					if(thirdBit==0) {
 						imagePixels[row][col][2]=imagePixels[row][col][2]+4;  // Fella saying subbie 4
 					}
 				}
 				else {
-					if(thirdBit==2) {
+					if(thirdBit==4) {
 						imagePixels[row][col][2]=imagePixels[row][col][2]-4; // Fella saying subbie 4 on god? FR FR?
 					}
 				}
@@ -446,18 +452,16 @@ public class StegoedGifImage {
 
 				binaryValue = binaryString[i].charAt(0);  //Message Bit
 				if(binaryValue=='1'){
-					if(imagePixels[row][col][2]%2==0)
+					if((imagePixels[row][col][2]&1)==0)
 						imagePixels[row][col][2]=imagePixels[row][col][2]+1;
 				}
 				else{
-					if(imagePixels[row][col][2]%2==1)
+					if((imagePixels[row][col][2]&1)==1)
 						imagePixels[row][col][2]=imagePixels[row][col][2]-1;
 				} 
 				i++;
-
 				if(binaryString[i]==null)
 					return imagePixels;
-
 				binaryValue = binaryString[i].charAt(0);
 				secondBit = imagePixels[row][col][2]&2;
 				if(binaryValue=='1') {
@@ -470,29 +474,37 @@ public class StegoedGifImage {
 						imagePixels[row][col][2]=imagePixels[row][col][2]-2;
 					}
 				}
+				i++;
+
+				if(binaryString[i]==null)
+					return imagePixels;
+
 				binaryValue = binaryString[i].charAt(0);
-				thirdBit = imagePixels[row][col][2]&3;
+				thirdBit = imagePixels[row][col][2]&4;
 				if(binaryValue=='1') {
 					if(thirdBit==0) {
 						imagePixels[row][col][2]=imagePixels[row][col][2]+4;  // Fella saying subbie 4
 					}
 				}
 				else {
-					if(thirdBit==2) {
+					if(thirdBit==4) {
 						imagePixels[row][col][2]=imagePixels[row][col][2]-4; // Fella saying subbie 4 on god? FR FR?
 					}
 				}
-				
-				
+				i++;
+
+				if(binaryString[i]==null)
+					return imagePixels;
+
 				binaryValue = binaryString[i].charAt(0);
-				fourthBit = imagePixels[row][col][2]&4;
+				fourthBit = imagePixels[row][col][2]&8;
 				if(binaryValue=='1') {
 					if(fourthBit==0) {
 						imagePixels[row][col][2]=imagePixels[row][col][2]+8;  // Fella saying addied a perc 8?
 					}
 				}
 				else {
-					if(fourthBit==2) {
+					if(fourthBit==8) {
 						imagePixels[row][col][2]=imagePixels[row][col][2]-8; // Fella saying subbie 8 on god? FR FR?
 					}
 				}
