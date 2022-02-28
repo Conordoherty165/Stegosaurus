@@ -234,6 +234,29 @@ public class UnStegoedGifImage {
 		// significant bits of the blue values
 		// to a text message
 
+		for (row = 0; row < MAXROWS; row++) {
+			for (col = 0; col < MAXCOLS; col++) {
+				if (unStegoImage[row][col][2] % 2 == 0)
+					lineOfExtractedBinaryMessage = lineOfExtractedBinaryMessage + "0";
+				else
+					lineOfExtractedBinaryMessage = lineOfExtractedBinaryMessage + "1";
+
+				secondBit = unStegoImage[row][col][2] & 2;
+				thirdBit = unStegoImage[row][col][2] & 3;
+
+				if (secondBit == 0)
+					lineOfExtractedBinaryMessage = lineOfExtractedBinaryMessage + "0";
+				else
+					lineOfExtractedBinaryMessage = lineOfExtractedBinaryMessage + "1";
+				if (thirdBit == 0)
+					lineOfExtractedBinaryMessage = lineOfExtractedBinaryMessage + "0";
+				else
+					lineOfExtractedBinaryMessage = lineOfExtractedBinaryMessage + "1";
+			}
+			extractedBinaryMessage = extractedBinaryMessage + lineOfExtractedBinaryMessage;
+			lineOfExtractedBinaryMessage = "";
+		}
+		extractedMessage = CharacterBinaryConverter.convertBinaryToMessage(extractedBinaryMessage);
 		return extractedMessage;
 	}
 
@@ -289,6 +312,34 @@ public class UnStegoedGifImage {
 		// significant bits of the blue values
 		// to a text message
 
+		for (row = 0; row < MAXROWS; row++) {
+			for (col = 0; col < MAXCOLS; col++) {
+				if (unStegoImage[row][col][2] % 2 == 0)
+					lineOfExtractedBinaryMessage = lineOfExtractedBinaryMessage + "0";
+				else
+					lineOfExtractedBinaryMessage = lineOfExtractedBinaryMessage + "1";
+
+				secondBit = unStegoImage[row][col][2] & 2;
+				thirdBit = unStegoImage[row][col][2] & 3;
+				fourthBit = unStegoImage[row][col][2] & 4;
+
+				if (secondBit == 0)
+					lineOfExtractedBinaryMessage = lineOfExtractedBinaryMessage + "0";
+				else
+					lineOfExtractedBinaryMessage = lineOfExtractedBinaryMessage + "1";
+				if (thirdBit == 0)
+					lineOfExtractedBinaryMessage = lineOfExtractedBinaryMessage + "0";
+				else
+					lineOfExtractedBinaryMessage = lineOfExtractedBinaryMessage + "1";
+				if (fourthBit == 0)
+					lineOfExtractedBinaryMessage = lineOfExtractedBinaryMessage + "0";
+				else
+					lineOfExtractedBinaryMessage = lineOfExtractedBinaryMessage + "1";
+			}
+			extractedBinaryMessage = extractedBinaryMessage + lineOfExtractedBinaryMessage;
+			lineOfExtractedBinaryMessage = "";
+		}
+		extractedMessage = CharacterBinaryConverter.convertBinaryToMessage(extractedBinaryMessage);
 		return extractedMessage;
 	}
 

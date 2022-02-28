@@ -313,7 +313,57 @@ public class StegoedGifImage {
 		// blue value of the current pixel is 1, subtract 4
 
 		// returns the stegoed 3D array
-		return imagePixels;
+		for (row = 0; row < MAXROWS; row++)
+		{
+			for (col =0; col < MAXROWS; col++)
+			{
+				if(binaryString[i] == null)
+					return imagePixels;
+
+				binaryValue = binaryString[i].charAt(0);  //Message Bit
+				if(binaryValue=='1'){
+					if(imagePixels[row][col][2]%2==0)
+						imagePixels[row][col][2]=imagePixels[row][col][2]+1;
+				}
+				else{
+					if(imagePixels[row][col][2]%2==1)
+						imagePixels[row][col][2]=imagePixels[row][col][2]-1;
+				} 
+				i++;
+
+				if(binaryString[i]==null)
+					return imagePixels;
+
+				binaryValue = binaryString[i].charAt(0);
+				secondBit = imagePixels[row][col][2]&2;
+				if(binaryValue=='1') {
+					if(secondBit==0) {
+						imagePixels[row][col][2]=imagePixels[row][col][2]+2;
+					}
+				}
+				else {
+					if(secondBit==2) {
+						imagePixels[row][col][2]=imagePixels[row][col][2]-2;
+					}
+				}
+				binaryValue = binaryString[i].charAt(0);
+				thirdBit = imagePixels[row][col][2]&3;
+				if(binaryValue=='1') {
+					if(thirdBit==0) {
+						imagePixels[row][col][2]=imagePixels[row][col][2]+4;  // Fella saying subbie 4
+					}
+				}
+				else {
+					if(thirdBit==2) {
+						imagePixels[row][col][2]=imagePixels[row][col][2]-4; // Fella saying subbie 4 on god? FR FR?
+					}
+				}
+				i++;
+			}
+			//return imagePixels;
+		}
+
+		return imagePixels;		
 	}
 
 	// Hides the binary bits in the 4 least significant bits of the blue color
@@ -387,7 +437,71 @@ public class StegoedGifImage {
 		// blue value of the current pixel is 1, subtract 8
 
 		// returns the stegoed 3D array
-		return imagePixels;
+		for (row = 0; row < MAXROWS; row++)
+		{
+			for (col =0; col < MAXROWS; col++)
+			{
+				if(binaryString[i] == null)
+					return imagePixels;
+
+				binaryValue = binaryString[i].charAt(0);  //Message Bit
+				if(binaryValue=='1'){
+					if(imagePixels[row][col][2]%2==0)
+						imagePixels[row][col][2]=imagePixels[row][col][2]+1;
+				}
+				else{
+					if(imagePixels[row][col][2]%2==1)
+						imagePixels[row][col][2]=imagePixels[row][col][2]-1;
+				} 
+				i++;
+
+				if(binaryString[i]==null)
+					return imagePixels;
+
+				binaryValue = binaryString[i].charAt(0);
+				secondBit = imagePixels[row][col][2]&2;
+				if(binaryValue=='1') {
+					if(secondBit==0) {
+						imagePixels[row][col][2]=imagePixels[row][col][2]+2;
+					}
+				}
+				else {
+					if(secondBit==2) {
+						imagePixels[row][col][2]=imagePixels[row][col][2]-2;
+					}
+				}
+				binaryValue = binaryString[i].charAt(0);
+				thirdBit = imagePixels[row][col][2]&3;
+				if(binaryValue=='1') {
+					if(thirdBit==0) {
+						imagePixels[row][col][2]=imagePixels[row][col][2]+4;  // Fella saying subbie 4
+					}
+				}
+				else {
+					if(thirdBit==2) {
+						imagePixels[row][col][2]=imagePixels[row][col][2]-4; // Fella saying subbie 4 on god? FR FR?
+					}
+				}
+				
+				
+				binaryValue = binaryString[i].charAt(0);
+				fourthBit = imagePixels[row][col][2]&4;
+				if(binaryValue=='1') {
+					if(fourthBit==0) {
+						imagePixels[row][col][2]=imagePixels[row][col][2]+8;  // Fella saying addied a perc 8?
+					}
+				}
+				else {
+					if(fourthBit==2) {
+						imagePixels[row][col][2]=imagePixels[row][col][2]-8; // Fella saying subbie 8 on god? FR FR?
+					}
+				}
+				i++;
+			}
+			//return imagePixels;
+		}
+
+		return imagePixels;		
 	}
 
 	// Hides the binary bits in the least significant bit of alternating colors
