@@ -864,7 +864,9 @@ public class StegoedGifImage {
 
 
 		counter = 0;
-
+			// to do with the idea its an adpative method and when you land on a pixel you land on a block of values
+		//dividing up the image for the blocks, image you land on is in a block of pixels, dividing image into blocks
+		//are the colours in the block different, checking, you want to check a pixel that is in the block in a pixel
 		do
 		{
 			counter++;
@@ -894,7 +896,7 @@ public class StegoedGifImage {
 			//  in the else statement it checks where the data position is and then the dataposition counter value is taken away from the first 3rd of the MAXCOL's
 			
 
-			tempROWS = ((tempROWS * 3) - 1); //array index?
+			tempROWS = ((tempROWS * 3) - 1); //array index? random number generator and rows and cols dont start
 			tempCOLS = ((tempCOLS * 3) - 1);
 
 			if ((tempROWS > 200) || (tempCOLS > 300))
@@ -944,7 +946,7 @@ public class StegoedGifImage {
 					borderunsuitability++; //test flag
 					System.out.println("BP");
 				}
-				//10.you don’t need to explain above. It is checking pixels on the edges of the image.
+				//10.you donâ€™t need to explain above. It is checking pixels on the edges of the image.
 				else
 				{
 					if ((imagePixels[tempROWS][tempCOLS][0] != imagePixels[tempROWS-1][tempCOLS-1][0]) 
@@ -982,6 +984,8 @@ public class StegoedGifImage {
 				}
 
 				//11.         Checking pixels around if the surround pixels are different to current pixels.
+				// its a block that checks how different the surrounding values are, and if it is not suitbale then
+				//change the unsuitabilestage1 by 1
 				if (different == 0)
 					unsuitablestage1 ++;
 
@@ -1086,7 +1090,10 @@ public class StegoedGifImage {
 			tempROWS = 0;
 
 		} while (i < binaryString.length);
-
+		//14. As done in number 14, check the surrounding image pixel values and then check if the difference is greater than 0
+		//if the difference si greater than 0 increment the i value and incrment the embedstage2 value, else the image is not suitbale,
+		//set the difference back to zero and reset the temp values to 0.
+		// the while will break when the binary string length of the message is shorter than the incremental i message.
 
 		System.out.print("Border values out of range = ");
 		System.out.println(borderunsuitability);
